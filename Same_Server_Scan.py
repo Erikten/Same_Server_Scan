@@ -11,23 +11,23 @@ import json
 
 def querySite(data,page,url):
 
-    with open(f'{url}.txt', 'a+') as f:
-        f.write('-' * 20 + f'µÚ {page} Ò³' + '-' * 20 + '\n\n')
+    with open(f'{url}.txt', 'a+',encoding='utf-8') as f:
+        f.write('-' * 20 + f'ç¬¬ {page} é¡µ' + '-' * 20 + '\n\n')
 
     new_data = data['data']
     for i in new_data['domains']:
-        # print("ÓòÃû : %s \nÍøÕ¾±êÌâ : %s \n°®Õ¾PCÈ¨ÖØ : %s \n°®Õ¾ÒÆ¶¯È¨ÖØ : %s \nËÑ¹·È¨ÖØ : %s\n¹È¸èÈ¨ÖØ : %s\n" %(i['domain'], i['title'], i['pc_br'], i['m_br'], i['sogou_pr'], i['google_pr']))
-        res = "\tÓòÃû : %s \n\tÍøÕ¾±êÌâ : %s \n\t°®Õ¾PCÈ¨ÖØ : %s \n\t°®Õ¾ÒÆ¶¯È¨ÖØ : %s \n\tËÑ¹·È¨ÖØ : %s\n\t¹È¸èÈ¨ÖØ : %s\n\n" % (
+        # print("åŸŸå : %s \nç½‘ç«™æ ‡é¢˜ : %s \nçˆ±ç«™PCæƒé‡ : %s \nçˆ±ç«™ç§»åŠ¨æƒé‡ : %s \næœç‹—æƒé‡ : %s\nè°·æ­Œæƒé‡ : %s\n" %(i['domain'], i['title'], i['pc_br'], i['m_br'], i['sogou_pr'], i['google_pr']))
+        res = "\tåŸŸå : %s \n\tç½‘ç«™æ ‡é¢˜ : %s \n\tçˆ±ç«™PCæƒé‡ : %s \n\tçˆ±ç«™ç§»åŠ¨æƒé‡ : %s \n\tæœç‹—æƒé‡ : %s\n\tè°·æ­Œæƒé‡ : %s\n\n" % (
             i['domain'], i['title'], i['pc_br'], i['m_br'], i['sogou_pr'], i['google_pr'])
 
-        with open(f'{url}.txt', 'a+') as f:
+        with open(f'{url}.txt', 'a+',encoding='utf-8') as f:
             f.write(res)
 
-    with open(f'{url}.txt', 'a+') as f:
-        f.write('-' * 20 + f'µÚ {page} Ò³' + '-' * 20 + '\n\n')
-    print(f'µÚ {page} Ò³µÄ½á¹ûÒÑÊä³öµ½ {url}.txt ,Çë×¢Òâ²éÊÕ !\n')
+    with open(f'{url}.txt', 'a+',encoding='utf-8') as f:
+        f.write('-' * 20 + f'ç¬¬ {page} é¡µ' + '-' * 20 + '\n\n')
+    print(f'ç¬¬ {page} é¡µçš„ç»“æœå·²è¾“å‡ºåˆ° {url}.txt ,è¯·æ³¨æ„æŸ¥æ”¶ !\n')
     try:
-        chose = input('ÊÇ·ñ¼ÌĞøÊÕ¼¯ÏÂÒ»Ò³½á¹û ? ( y )') or 'y'
+        chose = input('æ˜¯å¦ç»§ç»­æ”¶é›†ä¸‹ä¸€é¡µç»“æœ ? ( y )') or 'y'
         if chose == 'y':
             page = int(page)+1
             global key
@@ -36,56 +36,56 @@ def querySite(data,page,url):
             data = json.loads(html)
             reqStatus(data, page, url)
         elif page == 'n':
-            exit('¸ĞĞ»Ê¹ÓÃ, ÆÚ´ıÏÂ´ÎÔÙ»á ~')
+            exit('æ„Ÿè°¢ä½¿ç”¨, æœŸå¾…ä¸‹æ¬¡å†ä¼š ~')
         else:
-            exit('¸ĞĞ»Ê¹ÓÃ, ÆÚ´ıÏÂ´ÎÔÙ»á ~')
+            exit('æ„Ÿè°¢ä½¿ç”¨, æœŸå¾…ä¸‹æ¬¡å†ä¼š ~')
     except:
-        print('¸ĞĞ»Ê¹ÓÃ, ÆÚ´ıÏÂ´ÎÔÙ»á ~')
+        print('æ„Ÿè°¢ä½¿ç”¨, æœŸå¾…ä¸‹æ¬¡å†ä¼š ~')
 
 def reqStatus(data,page,url):
 
     if data['code'] == 200000:
 
         new_data = data['data']
-        info = f"\nÖ÷Õ¾ : {new_data['query']}\nIPµØÖ· : {new_data['ip']}\nIPµØÇø : {new_data['address']}\n×ÜÌõÊı : {new_data['total_num']}\n×ÜÒ³Êı : {new_data['total_pages']}\nµ±Ç°Ò³Êı : {new_data['current_page']}\n"
+        info = f"\nä¸»ç«™ : {new_data['query']}\nIPåœ°å€ : {new_data['ip']}\nIPåœ°åŒº : {new_data['address']}\næ€»æ¡æ•° : {new_data['total_num']}\næ€»é¡µæ•° : {new_data['total_pages']}\nå½“å‰é¡µæ•° : {new_data['current_page']}\n"
         print(info)
 
-        with open(f'{url}.txt', 'a+') as f:
+        with open(f'{url}.txt', 'a+',encoding='utf-8') as f:
             f.write(info + '\n')
         querySite(data,page,url)
 
     elif data['code'] == 200001:
-        print('²ÎÊı´íÎó !')
+        print('å‚æ•°é”™è¯¯ !')
 
     elif data['code'] == 200005:
-        print('Êı¾İ´íÎó,ÇëÖØÊÔ !')
+        print('æ•°æ®é”™è¯¯,è¯·é‡è¯• !')
 
     elif data['code'] == 200006:
-        print('ÔİÎŞÊı¾İ !')
+        print('æš‚æ— æ•°æ® !')
 
     elif data['code'] == 100000:
-        print('Î´Öª´íÎó !')
+        print('æœªçŸ¥é”™è¯¯ !')
 
     elif data['code'] == 100001:
-        print('È±ÉÙhash !')
+        print('ç¼ºå°‘hash !')
 
     elif data['code'] == 100002:
-        print('ÎŞĞ§hash !')
+        print('æ— æ•ˆhash !')
 
     elif data['code'] == 100003:
-        print('½Ó¿ÚÎ¬»¤ !')
+        print('æ¥å£ç»´æŠ¤ !')
 
     elif data['code'] == 100004:
-        print('½Ó¿ÚÍ£ÓÃ !')
+        print('æ¥å£åœç”¨ !')
 
     elif data['code'] == 100005:
-        print('Óà¶î²»×ã,Çë³äÖµ !')
+        print('ä½™é¢ä¸è¶³,è¯·å……å€¼ !')
 
     elif data['code'] == 100005:
-        print('Ö§¸¶Ê§°Ü,ÇëÖØÊÔ !')
+        print('æ”¯ä»˜å¤±è´¥,è¯·é‡è¯• !')
 
     else:
-        print('ÄúµÄ²Ù×÷Ì«Å£ÁË, ³ÌĞòÒÑ·É×ß...')
+        print('æ‚¨çš„æ“ä½œå¤ªç‰›äº†, ç¨‹åºå·²é£èµ°...')
 
 def reqSite(key,url,page=1):
     api = 'https://apistore.aizhan.com/site/dnsinfos/'+key+'?query='+url+'&page=%d'%page
@@ -107,9 +107,9 @@ _\ \ (_| | | | | | |  __/   _\ \  __/ |   \ V /  __/ |   _\ \ (_| (_| | | | |
 
     # js = '{"code":200000,"status":"success","data":{"query":"www.aizhan.com","ip":"125.77.130.22","address":"\u798f\u5efa\u6cc9\u5dde \u7535\u4fe1","total_num":1261,"total_pages":64,"current_page":1,"domains":[{"domain":"www.28.com","title":"28\u5546\u673a\u7f51&amp;mdash;&amp;mdash;\u62db\u5546\u52a0\u76df\u884c\u4e1a\u7f8e\u56fd\u4e0a\u5e02\u54c1\u724c(\u627e\u8fde\u9501\u521b\u4e1a\u9879\u76ee)","pc_br":2,"m_br":1,"sogou_pr":0,"google_pr":5},{"domain":"www.4008898188.com","title":"\u9c9c\u82b1\u7f51|\u82b1\u793c\u7f51-\u4e2d\u56fd\u9c9c\u82b1\u793c\u54c1\u7f51,\u9c9c\u82b1\u901f\u9012\u7f51\u7ad9,\u7f51\u4e0a\u8ba2\u82b1\u9001\u82b1\u4e0a\u95e8,\u540c\u57ce\u9c9c\u82b1\u5feb\u9012\u7f51\u4e0a\u82b1\u5e97","pc_br":0,"m_br":0,"sogou_pr":0,"google_pr":0},{"domain":"www.52edy.com","title":"\u8349\u56fe\u5927\u5e08\u6a21\u578b sketchup\u6a21\u578b\u4e0b\u8f7d sketchup\u6a21\u578b\u514d\u8d39\u4e0b\u8f7d SU\u6a21\u578b\u4e0b\u8f7d","pc_br":3,"m_br":1,"sogou_pr":0,"google_pr":0},{"domain":"www.7xdown.com","title":"\u4e03\u559c\u4e0b\u8f7d\u7ad9_\u5b98\u65b9\u8f6f\u4ef6\u4e0b\u8f7d_\u7eff\u8272\u8f6f\u4ef6_\u6e38\u620f\u4e0b\u8f7d_\u6700\u5b89\u5168\u7684\u4e0b\u8f7d\u7ad9","pc_br":5,"m_br":0,"sogou_pr":0,"google_pr":5},{"domain":"www.arswp.com","title":"Windows\u6e05\u7406\u52a9\u624b","pc_br":2,"m_br":1,"sogou_pr":0,"google_pr":5},{"domain":"www.asianewsphoto.com","title":"Asia News Photo","pc_br":0,"m_br":0,"sogou_pr":0,"google_pr":6},{"domain":"www.cnd8.com","title":"\u624b\u673a\u6e38\u620f\u6392\u884c\u699c_\u6700\u706b\u597d\u73a9\u624b\u673a\u6e38\u620f\u6392\u884c\u699c\u524d\u5341\u540d_\u83dc\u9e1f\u6e38\u620f\u7f51","pc_br":3,"m_br":3,"sogou_pr":0,"google_pr":6},{"domain":"www.cnmo.com","title":"CNMO-\u4e13\u4e1a.\u6709\u8da3\u7684\u79d1\u6280\u65b0\u5a92\u4f53","pc_br":5,"m_br":4,"sogou_pr":0,"google_pr":7},{"domain":"www.cy.com","title":"\u7545\u6e38-ChangYou.com","pc_br":0,"m_br":0,"sogou_pr":0,"google_pr":1},{"domain":"www.danji8.com","title":"\u5355\u673a8\u4e0b\u8f7d\u7ad9-\u8f6f\u4ef6\u4e0b\u8f7d-\u6e38\u620f\u4e0b\u8f7d","pc_br":0,"m_br":0,"sogou_pr":0,"google_pr":3},{"domain":"www.ddooo.com","title":"\u591a\u591a\u8f6f\u4ef6\u7ad9-\u63d0\u4f9b\u7eff\u8272\u8f6f\u4ef6\u548c\u70ed\u95e8\u5355\u673a\u6e38\u620f\u4e0b\u8f7d","pc_br":7,"m_br":2,"sogou_pr":0,"google_pr":6},{"domain":"www.eastmoney.com","title":"\u4e1c\u65b9\u8d22\u5bcc\u7f51\uff1a\u8d22\u7ecf\u95e8\u6237\uff0c\u63d0\u4f9b\u4e13\u4e1a\u7684\u8d22\u7ecf\u3001\u80a1\u7968\u3001\u884c\u60c5\u3001\u8bc1\u5238\u3001\u57fa\u91d1\u3001\u7406\u8d22\u3001\u94f6\u884c\u3001\u4fdd\u9669\u3001\u4fe1\u6258\u3001\u671f\u8d27\u3001\u9ec4\u91d1\u3001\u80a1\u5427\u3001\u535a\u5ba2\u7b49\u5404\u7c7b\u8d22\u7ecf\u8d44\u8baf\u53ca\u6570\u636e","pc_br":6,"m_br":2,"sogou_pr":0,"google_pr":7},{"domain":"www.fia-china.com","title":"Hi &amp; Fi Asia-China \u5065\u5eb7\u539f\u6599\uff0c\u98df\u54c1\u914d\u6599\u4e2d\u56fd\u5c55 | \u98df\u54c1\u6dfb\u52a0\u5242\u5c55 |FIC","pc_br":0,"m_br":0,"sogou_pr":0,"google_pr":4},{"domain":"www.hunantv.com","title":"\u58f0\u660e\u516c\u544a_\u6e56\u5357\u5feb\u4e50\u9633\u5149\u4e92\u52a8\u5a31\u4e50\u4f20\u5a92\u6709\u9650\u516c\u53f8","pc_br":5,"m_br":6,"sogou_pr":0,"google_pr":7},{"domain":"www.ifeng.com","title":"\u51e4\u51f0\u7f51","pc_br":5,"m_br":2,"sogou_pr":0,"google_pr":8},{"domain":"www.kingsoft.com","title":"\u91d1\u5c71\u5728\u7ebf - \u505a\u4e16\u754c\u4e00\u6d41\u7684\u8f6f\u4ef6\u4f01\u4e1a","pc_br":3,"m_br":1,"sogou_pr":0,"google_pr":7},{"domain":"www.m1905.com","title":"\u7535\u5f71\u7f51_1905.com","pc_br":4,"m_br":3,"sogou_pr":0,"google_pr":7},{"domain":"www.mamecn.com","title":"\u8857\u673a\u6e38\u620f_\u8857\u673a\u6e38\u620f\u4e0b\u8f7d_\u8857\u673a\u6a21\u62df\u5668\u6e38\u620f\u4e0b\u8f7d-\u8857\u673a\u4e2d\u56fd","pc_br":5,"m_br":1,"sogou_pr":0,"google_pr":5},{"domain":"www.mop.com","title":"\u732b\u6251-\u732b\u6251\u7f51","pc_br":4,"m_br":1,"sogou_pr":0,"google_pr":7},{"domain":"www.myswitzerland.com","title":"Switzerland Travel &amp; Vacation | Switzerland Tourism","pc_br":1,"m_br":1,"sogou_pr":0,"google_pr":8}]},"msg":"\u8bf7\u6c42\u6210\u529f"}'
 
-    key = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"        # °®Õ¾APIÊĞ³¡ÕËºÅË½Ô¿  https://www.aizhan.com/apistore/
+    key = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"        # çˆ±ç«™APIå¸‚åœºè´¦å·ç§é’¥  https://www.aizhan.com/apistore/
 
-    url = input('ÇëÊäÈëÒª²éÑ¯µÄÓòÃû: ')
+    url = input('è¯·è¾“å…¥è¦æŸ¥è¯¢çš„åŸŸå: ')
     if 'http' in url:
         url = url.split('http://')[1]
     elif 'https' in url:
